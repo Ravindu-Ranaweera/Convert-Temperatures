@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+	<title>Convert Temperatures</title>
+</head>
+
+<style>
+	body{
+		margin-top: 150px;
+  		background: #C4C4C4;
+  		color: #fff;
+	}
+	
+	.container{
+		background: #2F4F4F;
+	}
+	button{
+		padding: 10px;
+		margin: 0 10px;
+	}
+	h1{
+		font-weight: bolder;
+	}
+
+</style>
+<body>
+	<div class="container">
+    	<div class="row">
+        		<div class="col-md-6 offset-md-3">
+	
+				<h1 class="display-3 text-center mb-5">Convert Temperatures  <i class="fa fa-thermometer-empty" aria-hidden="true"></i></h1>
+		
+		
+				<button id="celBtn" type="button" class="btn btn-primary  btn-lg mb-4"> Celsius (°C)</button>
+				<button id="farBtn" type="button" class="btn btn-primary  btn-lg mb-4"> Fahrenheit (°F)</button>
+				<button id="kelBtn" type="button" class="btn btn-primary  btn-lg mb-4">Kelvin (K)</button>
+
+
+				<form action="">
+					<div class="form-group">
+						<input id="mainInput" type="number" class="form-control form-control-lg" placeholder="Enter Value"  min="-270">
+					</div>
+				</form>
+
+				</div>
+		</div>
+
+		<div class="row justify-content-md-center">
+			<div  class="col col-lg-3">
+				<div class="card border-secondary mb-2">
+					<div class="card-block  text-secondary">
+						<h4 class="card-title">: <span  id="firstOutput"></span></h4>
+					</div>
+				</div>	
+			</div>
+			
+			<div class="col col-lg-3">
+				<div class="card border-secondary mb-2">
+				<div class="card-block  text-secondary">
+					<h4 class="card-title">: <span  id="secondOutput"></span></h4>	
+				</div>
+				</div>	
+			</div>
+
+		</div>
+
+	</div>
+	<script>
+		document.getElementById('celBtn').addEventListener('click', function() {
+			document.getElementById('mainInput').placeholder = "Enter Celsius Value";
+			document.getElementById('mainInput').addEventListener('input', function(e) {
+				let cel= e.target.value;
+				var result = (cel * 9/5)+32;
+		 		document.getElementById("firstOutput").innerHTML = result.toFixed(3)  +"°F";
+		 		var result = Number(cel) + 273.15;
+		 		document.getElementById('secondOutput').innerText = result.toFixed(3)  +"K";
+		 	})
+		})
+
+		document.getElementById('farBtn').addEventListener('click', function() {
+			document.getElementById('mainInput').placeholder = "Enter Fahrenheit Value";
+			document.getElementById('mainInput').addEventListener('input', function(e) {
+				let fahr= e.target.value;
+				var result = (fahr - 32)*5/9;
+		 		document.getElementById("firstOutput").innerHTML = result.toFixed(3) +"°C";
+		 		 var result = (fahr-32)*5/9 + 273.15;
+		 		document.getElementById('secondOutput').innerText = result.toFixed(3) +"K";
+		 	})
+		})		
+
+		document.getElementById('kelBtn').addEventListener('click', function() {
+			document.getElementById('mainInput').placeholder = "Enter Kelvin Value";
+			document.getElementById('mainInput').addEventListener('input', function(e) {
+				let kel= e.target.value;
+				var result = kel - 273.15;
+		 		document.getElementById("firstOutput").innerHTML = result.toFixed(3)  +"°C";
+		 		 var result = (kel - 273.15) * 9/5 + 32;
+		 		document.getElementById('secondOutput').innerText = result.toFixed(3)  +"°F";
+		 	})
+		})
+	</script>
+</body>
+</html>
